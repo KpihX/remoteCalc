@@ -17,7 +17,7 @@ public class CalcImplement extends UnicastRemoteObject implements CalcInterface{
         return numbers[0] - numbers[1];
     }
     public double multiply(Double[] numbers) throws RemoteException {
-        Double prod = 0.0;
+        Double prod = 1.0;
         for (int i = 0; i < numbers.length; i++) {
             prod *= numbers[i];
         }
