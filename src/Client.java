@@ -30,6 +30,8 @@ public class Client extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setSize(500, 150);
+        outputLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inputField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -86,7 +88,7 @@ public class Client extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         try {
-            Registry regs = LocateRegistry.getRegistry("localhost", 1098);
+            Registry regs = LocateRegistry.getRegistry("localhost", 1100);
             calc = (CalcInterface) regs.lookup("CalcServices");
         } catch (Exception ex) {
             ex.printStackTrace();
