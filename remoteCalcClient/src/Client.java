@@ -87,13 +87,33 @@ public class Client extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
+        System.out.println("This program runs a calculator over a javaRMI server. By default the server is running at localhost with the port 1100");
+        String adressIP;
+        int port;
+        if (args.length == 0) {
+            adressIP = "localhost";
+            port = 1100;
+        } else if (args.length == 1) {
+            adressIP = args[0];
+            port = 1100;
+        } else if (args.length == 2) {
+            adressIP = args[0];
+            port = Integer.parseInt(args[1]);
+        } else {
+            System.err.println("!You have to enter at most the IP address followed eventually by the port, of the server!");
+            return;
+        }
+
         try {
-            Registry regs = LocateRegistry.getRegistry("localhost", 1100);
+            Registry regs = LocateRegistry.getRegistry(adressIP, port);
             calc = (CalcInterface) regs.lookup("CalcServices");
         } catch (Exception ex) {
             ex.printStackTrace();
             return;
         }
+
+        System.out.println("The client is connected to the server at the IP adress " + adressIP + " on port " + port + "!"); 
+
         new Client();
     }
 }
